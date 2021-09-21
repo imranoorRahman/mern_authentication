@@ -53,13 +53,13 @@ const RegisterScreen = ({ history }) => {
   return (
     <div className="register-screen">
       <form onSubmit={registerHandler} className="register-screen__form">
-        <h3 className="register-screen">Register</h3>
+        <h3 className="register-screen__title">Register</h3>
         {error && <span className="error-message">{error}</span>}
         <div className="form-group">
           <label htmlFor="name">Username:</label>
           <input
             type="text"
-            require
+            required
             id="name"
             placeholder="Enter Username"
             value={username}
@@ -71,7 +71,7 @@ const RegisterScreen = ({ history }) => {
           <label htmlFor="email">Email:</label>
           <input
             type="text"
-            require
+            required
             id="email"
             placeholder="Enter Email address"
             value={email}
@@ -83,7 +83,7 @@ const RegisterScreen = ({ history }) => {
           <label htmlFor="password">Password:</label>
           <input
             type="text"
-            require
+            required
             id="password"
             placeholder="Enter Password"
             value={password}
@@ -95,7 +95,7 @@ const RegisterScreen = ({ history }) => {
           <label htmlFor="confirmpassword">Confirm Password:</label>
           <input
             type="text"
-            require
+            required
             id="confirmpassword"
             placeholder="Please confirm the password"
             value={confirmpassword}

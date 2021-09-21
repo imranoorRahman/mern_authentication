@@ -5,7 +5,6 @@ import "./PrivateScreen.css";
 const PrivateScreen = ({ history }) => {
   const [error, setError] = useState("");
   const [privateData, setPrivateData] = useState("");
-  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!localStorage.getItem("authToken")) {

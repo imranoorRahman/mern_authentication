@@ -43,13 +43,13 @@ const LoginScreen = ({ history }) => {
   return (
     <div className="login-screen">
       <form onSubmit={loginHandler} className="login-screen__form">
-        <h3 className="login-screen">Login</h3>
+        <h3 className="login-screen__title">Login</h3>
         {error && <span className="error-message">{error}</span>}
         <div className="form-group">
           <label htmlFor="name">Username:</label>
           <input
             type="text"
-            require
+            required
             id="name"
             placeholder="Enter Username"
             value={username}
@@ -61,7 +61,7 @@ const LoginScreen = ({ history }) => {
           <label htmlFor="email">Email:</label>
           <input
             type="text"
-            require
+            required
             id="email"
             placeholder="Enter Email address"
             value={email}
@@ -73,7 +73,7 @@ const LoginScreen = ({ history }) => {
           <label htmlFor="password">Password:</label>
           <input
             type="text"
-            require
+            required
             id="password"
             placeholder="Enter Password"
             value={password}
@@ -85,7 +85,7 @@ const LoginScreen = ({ history }) => {
           <label htmlFor="confirmpassword">Confirm Password:</label>
           <input
             type="text"
-            require
+            required
             id="confirmpassword"
             placeholder="Please confirm the password"
             value={confirmpassword}
