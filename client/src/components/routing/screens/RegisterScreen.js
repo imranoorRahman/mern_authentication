@@ -1,14 +1,20 @@
-import useState from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "react-router-dom";
 import "./RegisterScreen.css";
-import e from "express";
 
-const RegisterScreem = ({ history }) => {
+const RegisterScreen = ({ history }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) {
+      history.push("/");
+    }
+  }, [history]);
 
   const registerHandler = async (e) => {
     e.preventDefault();
