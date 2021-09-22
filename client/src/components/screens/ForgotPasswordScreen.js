@@ -1,18 +1,18 @@
-import useState from "react";
+import { useState } from "react";
 import axios from "axios";
 import "./ForgotPasswordScreen.css";
 
-const ForgotPasswordScreen = ({ history }) => {
+const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const ForgotPasswordHandler = async (e) => {
+  const forgotPasswordHandler = async (e) => {
     e.preventDefault();
 
     const config = {
       header: {
-        "Content-Type": "Application/json",
+        "Content-Type": "application/json",
       },
     };
 
@@ -26,6 +26,7 @@ const ForgotPasswordScreen = ({ history }) => {
       setSuccess(data.data);
     } catch (error) {
       setError(error.response.data.error);
+      setEmail("");
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -35,13 +36,12 @@ const ForgotPasswordScreen = ({ history }) => {
   return (
     <div className="forgotpassword-screen">
       <form
-        onSubmit={forgotpasswordHandler}
-        className="Forgotpassword-screen__form"
+        onSubmit={forgotPasswordHandler}
+        className="forgotpassword-screen__form"
       >
         <h3 className="forgotpassword-screen__title">Forgot Password</h3>
         {error && <span className="error-message">{error}</span>}
         {success && <span className="success-message">{success}</span>}
-
         <div className="form-group">
           <p className="forgotpassword-screen__subtext">
             Please enter the email address you registered your account with in
@@ -49,19 +49,20 @@ const ForgotPasswordScreen = ({ history }) => {
           </p>
           <label htmlFor="email">Email:</label>
           <input
-            type="text"
+            type="email"
             required
             id="email"
-            placeholder="Enter Email address"
+            placeholder="Email address"
             value={email}
-            onChange={() => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <button type="submit" className="btn btn-primary">
-            Send Email
-          </button>
         </div>
+        <button type="submit" className="btn btn-primary">
+          Send Email
+        </button>
       </form>
     </div>
   );
 };
+
 export default ForgotPasswordScreen;

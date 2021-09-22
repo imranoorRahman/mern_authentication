@@ -53,13 +53,13 @@ exports.forgotPassword = async (req, res, next) => {
 
     if (!user) {
       // dont let user know if this user exists or not - brute force security
-      return next(new ErrorResponse("Email could not be sent", 404));
+      return next(new ErrorResponse("No email could not be sent", 404));
     }
     const resetToken = user.getResetPasswordToken();
 
     await user.save();
 
-    const resetUrl = `http://localhost:5000/resetpassword/${resetToken}`;
+    const resetUrl = `http://localhost:3000/passwordreset/${resetToken}`;
 
     const message = `
     <h1>You have requested a password reset</h1>
@@ -74,7 +74,7 @@ exports.forgotPassword = async (req, res, next) => {
         text: message,
       });
 
-      res.status(200).json({ success: true, data: "Email Sent :D" });
+      res.status(200).json({ success: true, data: "Email Sent" });
     } catch (err) {
       console.log(err);
 
@@ -83,7 +83,7 @@ exports.forgotPassword = async (req, res, next) => {
 
       await user.save();
 
-      return next(new ErrorResponse("Email could not be sent!", 500));
+      return next(new ErrorResponse("Email could not be sent", 500));
     }
   } catch (err) {
     next(err);
@@ -125,5 +125,5 @@ exports.resetPassword = async (req, res, next) => {
 
 const sendToken = (user, statusCode, res) => {
   const token = user.getSignedJwtToken();
-  res.status(statusCode).json({ success: true, token });
+  res.status(statusCode).json({ sucess: true, token });
 };
